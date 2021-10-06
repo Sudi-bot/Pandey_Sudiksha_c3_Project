@@ -72,6 +72,13 @@ public class Restaurant {
         return  closingTime;
     }
     
-   
+    public int getOrderValue(String itemName) throws itemNotFoundException {
+    	Item getOrderValue = findItemByName(itemName);
+    	if(getOrderValue == null)
+    		 throw new itemNotFoundException(itemName);
+    	int total = getOrderValue.getPrice();
+    	
+    	return total;
+       }
 
 }
