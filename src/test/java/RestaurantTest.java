@@ -76,6 +76,36 @@ class RestaurantTest {
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
+    @Test
+    public void get_order_value_for1_item() throws itemNotFoundException {
+        {
+    	
+    	
+    	restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+    	restaurant.addToMenu("Sweet corn soup",119);
+    	int total = restaurant.getOrderValue("Sweet corn soup");
+        assertEquals(119,total);
+    
+       
+    }
+        }
+    @Test
+    public void get_order_value_throws_error_when_item_not_found() throws itemNotFoundException {
+        {
+    	
+    	
+    	
+    	restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+    	restaurant.addToMenu("Sweet corn soup",119);
+    	int total = restaurant.getOrderValue("Sweet corn soup");
+        assertThrows(itemNotFoundException.class,
+                ()->restaurant.getOrderValue("French fries"));
+        
+       
+    }
+    
+    }
+
     
     
 }

@@ -78,29 +78,7 @@ class RestaurantServiceTest {
   //<<<<<<<<<<<<<<<<<<<< Get Order Total>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-    @Test
-    public void get_order_value_for1_item(){
-    	
-    	
-    	restaurant = service.addRestaurant("Amelie's cafe","Chennai",openingTime,closingTime);
-        int total = service.getOrderValue("Sweet corn soup");
-        assertEquals(1,total);
-        
-       
-    }
-    @Test
-    public void get_order_value_throws_error_when_item_not_found(){
-    	
-    	
-    	
-    	restaurant = service.addRestaurant("Amelie's cafe","Chennai",openingTime,closingTime);
-        int total = service.getOrderValue("Sweet corn soup");
-        assertThrows(itemNotFoundException.class,
-                ()->service.getOrderValue("French fries"));
-        
-       
-    }
-
+   
 
 
 

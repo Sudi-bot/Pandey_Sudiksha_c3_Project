@@ -4,7 +4,7 @@ public class Item {
 
     public Item(String name, int price) {
         this.name = name;
-        this.price = price;
+        this.setPrice(price);
     }
 
     public String getName() {
@@ -13,8 +13,16 @@ public class Item {
     @Override
     public String toString(){
         return  name + ":"
-                + price
+                + getPrice()
                 + "\n"
                 ;
     }
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
 }
