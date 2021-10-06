@@ -12,13 +12,13 @@ class RestaurantServiceTest {
     LocalTime openingTime = LocalTime.parse("10:30:00");
     LocalTime closingTime = LocalTime.parse("22:00:00");
   
-
+    
 
     //>>>>>>>>>>>>>>>>>>>>>>SEARCHING<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
     public void searching_for_existing_restaurant_should_return_expected_restaurant_object() throws restaurantNotFoundException {
     	
-        restaurant = service.addRestaurant("Test","Chennai",openingTime,closingTime);
+       
         Restaurant result = service.findRestaurantByName("Test");
         assertEquals(restaurant,result);
     	
@@ -28,7 +28,6 @@ class RestaurantServiceTest {
     @Test
     public void searching_for_non_existing_restaurant_should_throw_exception() throws restaurantNotFoundException {
     	
-        restaurant = service.addRestaurant("Amelie's cafe","Chennai",openingTime,closingTime);
         assertThrows(restaurantNotFoundException.class,()-> service.findRestaurantByName("Test"));
     	
      
@@ -73,5 +72,41 @@ class RestaurantServiceTest {
         service.addRestaurant("Pumpkin Tales","Chennai",LocalTime.parse("12:00:00"),LocalTime.parse("23:00:00"));
         assertEquals(initialNumberOfRestaurants + 1,service.getRestaurants().size());
     }
+  
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  //<<<<<<<<<<<<<<<<<<<< Get Order Total>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    @Test
+    public void get_order_value_for1_item(){
+    	
+    	
+    	restaurant = service.addRestaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+        int total = service.getOrderValue("Sweet corn soup");
+        assertEquals(1,total);
+        
+       
+    }
+    @Test
+    public void get_order_value_throws_error_when_item_not_found(){
+    	
+    	
+    	
+    	restaurant = service.addRestaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+        int total = service.getOrderValue("Sweet corn soup");
+        assertThrows(itemNotFoundException.class,
+                ()->service.getOrderValue("French fries"));
+        
+       
+    }
+
+
+
+
+
+
+
+
+
 }
